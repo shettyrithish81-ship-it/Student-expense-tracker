@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">STUDENT TOOLKIT</p>
+      <h1>Expense Tracker</h1>
+      <p class="subtitle">Keep track of where your money goes.</p>
+    </div>
+    <div class="date-chip" id="today"></div>
+  </header>
+
+  <main class="container">
+    <section class="summary-grid" aria-label="Expense summary">
+      <article class="summary-card">
+        <span class="card-label">Total expenses</span>
+        <strong id="totalAmount">₹0.00</strong>
+        <small>All recorded spending</small>
+      </article>
+      <article class="summary-card">
+        <span class="card-label">This month</span>
+        <strong id="monthAmount">₹0.00</strong>
+        <small>Spending this month</small>
+      </article>
+      <article class="summary-card">
+        <span class="card-label">Transactions</span>
+        <strong id="transactionCount">0</strong>
+        <small>Expenses recorded</small>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">NEW ENTRY</p>
+            <h2>Add an expense</h2>
+          </div>
+        </div>
+        <form id="expenseForm">
+          <label for="title">Expense name</label>
+          <input id="title" name="title" type="text" placeholder="e.g. Lunch" maxlength="60" required>
+
+          <div class="form-row">
+            <div>
+              <label for="amount">Amount (₹)</label>
+              <input id="amount" name="amount" type="number" min="0.01" step="0.01" placeholder="150" required>
+            </div>
+            <div>
+              <label for="category">Category</label>
+              <select id="category" name="category">
+                <option>Food</option>
+                <option>Travel</option>
+                <option>Books</option>
+                <option>College</option>
+                <option>Shopping</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="date">Date</label>
+          <input id="date" name="date" type="date" required>
+          <button class="primary-button" type="submit">Add expense</button>
+          <p class="form-note" id="formMessage" role="status"></p>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">OVERVIEW</p>
+            <h2>Spending by category</h2>
+          </div>
+        </div>
+        <div id="categoryChart" class="category-chart">
+          <p class="empty-state">Add an expense to see your category breakdown.</p>
+        </div>
+        <div id="categoryLegend" class="legend"></div>
+      </section>
+    </section>
+
+    <section class="panel transactions-panel">
+      <div class="section-heading transactions-heading">
+        <div>
+          <p class="eyebrow">YOUR RECORDS</p>
+          <h2>Recent expenses</h2>
+        </div>
+        <div class="filters">
+          <input id="searchInput" type="search" placeholder="Search expenses..." aria-label="Search expenses">
+          <select id="filterCategory" aria-label="Filter by category">
+            <option value="All">All categories</option>
+            <option>Food</option><option>Travel</option><option>Books</option>
+            <option>College</option><option>Shopping</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Expense</th><th>Category</th><th>Date</th><th class="amount-cell">Amount</th><th></th></tr>
+          </thead>
+          <tbody id="expenseList">
+            <tr><td colspan="5" class="empty-state">No expenses yet. Add your first expense above.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="footer-row">
+        <span id="shownCount">Showing 0 expenses</span>
+        <button id="clearAll" class="text-button" type="button">Clear all expenses</button>
+      </div>
+    </section>
+    <p class="privacy-note">Your entries are saved in this browser using LocalStorage. They are not uploaded to a server.</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
